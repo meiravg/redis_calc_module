@@ -16,7 +16,9 @@ HEARDER = calc.h
 
 SHARED_OBJ = lib$(TARGET).so
 
-RUN_SERVER_CMD = /home/meiravgri/Redis/redis-7.0.0/src/redis-server --loadmodule $(PWD)/$(SHARED_OBJ) 
+SERVER_PATH = /home/meiravgri/Redis/redis-7.0.0/src/redis-server
+
+RUN_SERVER_CMD = $(SERVER_PATH) --loadmodule $(PWD)/$(SHARED_OBJ) 
 
 $(SHARED_OBJ): $(TARGET).o $(HEADER) 
 	$(CC) $(CFLAGS) -shared $(TARGET).o -o $(SHARED_OBJ)
@@ -34,5 +36,4 @@ test_module:
 
 clean:
 	rm $(TARGET).o $(SHARED_OBJ)
-print:
-	echo $(PWD)/$(SHARED_OBJ)
+
